@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Registro de producto</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="/">Inicio</a> 
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		</div>
+	</nav>
+	<br>
+	<div class="container text-center">
+	
+		<!-- Cone th: object le estoy indicando el tipo de dato que paso por el form, en este caso es una instancia de Productos -->
+		<form th:action="@{/productos/guardar}" th:object="${producto}" method="post">
+			<div class="form-group">
+				<label for="exampleInputPassword1">Nombre</label> <input
+					type="text" class="form-control" name="nombre" th:field="*{nombre}"
+					placeholder="Nombre producto">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Descripción</label> <input
+					type="text" class="form-control" name ="descripcion" th:field="*{descripcion}"
+					placeholder="Marca del producto">
+			</div>
+			<div class="form-group">
+					<label for="exampleInputEmail1">Categroría</label> 
+					<select th:field="*{categoria}" class="form-control" name="categoria" required>
+						<th:block th:each="categoria : ${categorias}">
+							<option th:text="${categoria.nombre}" th:value="${categoria.id}" name="categoria"> </option>
+						</th:block>
+					</select>
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Stock</label> <input
+					type="number" min="0" step="1" class="form-control" name="stock" th:field="*{stock}"
+					placeholder="Lugar de frabricacion">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Precio</label> <input
+					type="number" class="form-control" name="precio" th:field="*{precio}"
+					placeholder="Precio del producto">
+			</div>
+			
+			
+			
+			<button type="submit" class="btn btn-primary">Agregar</button>
+		</form>
+	</div>
+</body>
+</html>
