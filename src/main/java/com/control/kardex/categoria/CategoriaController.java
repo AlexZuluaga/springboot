@@ -76,9 +76,11 @@ public class CategoriaController {
 	@RequestMapping("categorias/eliminar/{id}")
 	public String eliminar(@PathVariable(name = "id") Integer id ) {
 		
-		
-		categoriaRepository.deleteById(id);
-		
+		try {
+			categoriaRepository.deleteById(id);
+		} catch (Exception e){
+			return "redirect:/categorias";
+		}
 		return "redirect:/categorias";
 	}
 	

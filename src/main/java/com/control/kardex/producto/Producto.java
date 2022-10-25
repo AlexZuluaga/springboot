@@ -25,8 +25,8 @@ public class Producto {
 	private float stock;
 	
 	//Genero la relacion con la tabla categoria, muchos a uno.
-	@ManyToOne
-	@JoinColumn(name = "categoria_id")
+	@ManyToOne(cascade = CascadeType.ALL )
+	@JoinColumn(name = "categoria_id", nullable = true)
 	private Categoria categoria;
 
 	public Integer getId() {

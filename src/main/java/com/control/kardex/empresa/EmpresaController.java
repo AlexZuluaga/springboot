@@ -64,8 +64,11 @@ public class EmpresaController {
 	@RequestMapping("empresas/eliminar/{id}")
 	public String eliminar(@PathVariable(name = "id") Integer id ) {
 		
+		try{
 		empresaRepository.deleteById(id);
-
+		} catch (Exception e){
+			return "redirect:/empresas";
+		}
 		return "redirect:/empresas";
 	}
 	
